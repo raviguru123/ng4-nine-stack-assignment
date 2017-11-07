@@ -1,3 +1,30 @@
-<p>
-  task1 works!
-</p>
+<div class="tweetview">
+    <form name="tweetform">
+        <p>Tweete View</p>
+        <div>
+            <input [(ngModel)]="tweettxt" type="text" name="tweettxt" placeholder="Plase enter tweet">
+            <button (click)="submittweet(tweettxt)" type="submit">submit</button>
+        </div>
+        <ul *ngIf="tweets">
+            <li *ngFor="let tweet of tweets">
+                <span>{{tweet.text}}</span>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<div class="searchview">
+    <form name="tweetsearchform">
+        <p>search View</p>
+        <div>
+            <input [(ngModel)]="searchtweettxt" type="text" name="searchtweettxt" placeholder="Plase enter search text">
+            <button (click)="searchtweetsubmit(searchtweettxt)" type="submit">search</button>
+        </div>
+        <ul>
+            <li *ngFor="let tweet of searchtweets">
+                <span>{{tweet.text}}</span>
+            </li>
+        </ul>
+
+    </form>
+</div>
