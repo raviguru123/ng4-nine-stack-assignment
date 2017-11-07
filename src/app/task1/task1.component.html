@@ -1,9 +1,14 @@
+<div>
+    <button style="margin-top: 20px;margin-left: 1138px;color:red" (click)="logout()">Logout</button>
+</div>
+
 <div class="tweetview" *ngIf="page!='search'">
     <form name="tweetform">
         <p>Tweete View</p>
         <div>
             <input [(ngModel)]="tweettxt" type="text" name="tweettxt" placeholder="Plase enter tweet">
             <button (click)="submittweet(tweettxt)" type="submit">submit</button>
+            <button (click)="gotosearch()">Goto Search</button>
         </div>
         <ul *ngIf="tweets">
             <li *ngFor="let tweet of tweets">

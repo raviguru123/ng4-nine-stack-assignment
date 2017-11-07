@@ -39,14 +39,28 @@ puttweet(tweet:Tweet) {
 }
 
   submittweet(tweettxt:any) {
-    const tweetobj = {} as Tweet;
-    tweetobj.id=new Date().getTime();
-    tweetobj.text=tweettxt;
-    this.puttweet(tweetobj);
-    this.tweettxt="";
+    if(tweettxt!==undefined || tweettxt.length>0) {
+      const tweetobj = {} as Tweet;
+      tweetobj.id=new Date().getTime();
+      tweetobj.text=tweettxt;
+      this.puttweet(tweetobj);
+      this.getTweet();
+      this.tweettxt="";
+    }
+  
   }
 
- 
+logout() {
+  this.tweetservice.cleartweet();
+  this.location.go( '/task1?page=main');
+  window.location.reload();
+}
+
+  gotosearch() {
+  this.location.go( '/task1?page=search');
+  window.location.reload();
+ }
+
   searchtweetsubmit(text:any) {
     this.location.go( '/task1?page=search&hashtag='+text);
     this.searchtweets=this.tweets;
