@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Tweet} from '../tweet';
 import {TweetService} from '../tweet.service';
 import {SearchPipe} from './search.pipe';
+import {Location} from '@angular/common';
 import {ActivatedRoute,Router} from '@angular/router';
 
 @Component({
@@ -16,7 +17,7 @@ export class Task1Component implements OnInit {
   tweettxt:string;
   page:string;
   searchtweettxt:any;
-  constructor(private router: Router,private tweetservice:TweetService,private searchpipe:SearchPipe,private route:ActivatedRoute) { }
+  constructor(private router: Router,private location: Location,private tweetservice:TweetService,private searchpipe:SearchPipe) { }
  
   ngOnInit() {
     this.getTweet();
@@ -47,6 +48,7 @@ puttweet(tweet:Tweet) {
 
  
   searchtweetsubmit(text:any) {
+    this.location.go( '/task1?page=search&hashtag='+text);
     this.searchtweets=this.tweets;
     this.searchtweets=this.searchpipe.transform(this.tweets,text);
   }
