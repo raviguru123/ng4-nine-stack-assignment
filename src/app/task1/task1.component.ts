@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Tweet} from '../tweet';
 import {TweetService} from '../tweet.service';
 import {SearchPipe} from './search.pipe';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute,Router} from '@angular/router';
 
 @Component({
   selector: 'app-task1',
@@ -14,17 +14,22 @@ export class Task1Component implements OnInit {
   tweets:Tweet[];
   searchtweets:Tweet[];
   tweettxt:string;
-  searchtweettxt:string;
-
-  constructor(private tweetservice:TweetService,private searchpipe:SearchPipe,private route:ActivatedRoute) { }
+  page:string;
+  searchtweettxt:any;
+  constructor(private router: Router,private tweetservice:TweetService,private searchpipe:SearchPipe,private route:ActivatedRoute) { }
+ 
   ngOnInit() {
     this.getTweet();
+    const parsedUrl:any = this.router.parseUrl(this.router.url);
+    this.page=parsedUrl.queryParams.page;
+    this.searchtweettxt=parsedUrl.queryParams.hashtag;
+    
   }
 
   getTweet() {
     this.tweetservice.getTweets().then(tweets=> {
         this.tweets=tweets;
-        this.searchtweets=tweets;
+        this.searchtweets=this.searchpipe.transform(tweets,this.searchtweettxt);
       });
 }
 

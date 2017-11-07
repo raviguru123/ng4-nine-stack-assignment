@@ -1,4 +1,4 @@
-<div class="tweetview">
+<div class="tweetview" *ngIf="page!='search'">
     <form name="tweetform">
         <p>Tweete View</p>
         <div>
@@ -13,7 +13,7 @@
     </form>
 </div>
 
-<div class="searchview">
+<div class="searchview" *ngIf="page=='search'">
     <form name="tweetsearchform">
         <p>search View</p>
         <div>
