@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Tweet} from '../tweet';
 import {TweetService} from '../tweet.service';
 import {SearchPipe} from './search.pipe';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-task1',
@@ -15,7 +16,7 @@ export class Task1Component implements OnInit {
   tweettxt:string;
   searchtweettxt:string;
 
-  constructor(private tweetservice:TweetService,private searchpipe:SearchPipe) { }
+  constructor(private tweetservice:TweetService,private searchpipe:SearchPipe,private route:ActivatedRoute) { }
   ngOnInit() {
     this.getTweet();
   }
